@@ -1,0 +1,13 @@
+
+panel:
+  lastmod: "最近更新"
+  trending_tags: "热门标签"
+  toc: "概要"
+
+post:
+  relate_posts: "相似文章"
+  button:
+    next: 上一篇
+    previous: 下一篇
+
+search_hint: "搜索"   # text show on search bar

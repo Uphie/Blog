@@ -1,0 +1,13 @@
+
+-
+  type: github
+  icon: 'fab fa-github-alt'
+
+- type: qq
+  icon: 'fab fa-qq'
+# -
+#   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
+#   url:  ''                  # Fill with your Linkedin homepage
+# -
+#   icon: 'fab fa-stack-overflow'
+#   url:  ''                  # Fill with your stackoverflow homepage

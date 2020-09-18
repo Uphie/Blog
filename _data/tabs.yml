@@ -1,0 +1,24 @@
+
+-
+  name: 首页
+  icon: "fas fa-home"
+-
+  name: 分类
+  icon: "fas fa-stream"
+  path: tabs
+  url: categories
+-
+  name: 标签
+  icon: "fas fa-tags"
+  path: tabs
+  url: tags
+-
+  name: 归档
+  path: tabs
+  url: archives
+  icon: "fas fa-archive"
+-
+  name: 关于
+  icon: "fas fa-info"
+  path: tabs
+  url: about
