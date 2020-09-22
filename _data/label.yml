@@ -5,7 +5,7 @@ panel:
   toc: "概要"
 
 post:
-  relate_posts: "相似文章"
+  relate_posts: "推荐文章"
   button:
     next: 上一篇
     previous: 下一篇
