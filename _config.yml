@@ -15,17 +15,8 @@ author: Uphie                  # change to your full name
 
 avatar: /assets/img/sample/avatar.jpg   # support internet resources
 
-github:
-  username: Uphie
-
 qq:
   num: 1473890846
-
-social:
-  name: Uphie                  # it will shows as the copyright owner in Footer
-  links:
-    # The first element serves as the copyright owner's link
-    - https://github.com/Uphie       # change to your github homepage
 
 google_site_verification: 2x0Rw15I9yint3iJk_gcNHnl5UK5Aq_WhKVQcbmEe0w # change to your verification string
 

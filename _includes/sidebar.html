@@ -62,11 +62,7 @@
 
   {% for entry in site.data.contact %}
     {% capture url %}
-      {%- if entry.type == 'github' -%}
-        https://github.com/{{ site.github.username }}
-      {%- elsif entry.type == 'renren' -%}
-        http://renren.com/{{ site.renren.userid }}
-      {%- elsif entry.type == 'qq' -%}
+      {%- if entry.type == 'qq' -%}
         tencent://message/?uin=/{{ site.qq.num }}&Site=uphie.studio&Menu=yes
       {%- else -%}
         {{ entry.url }}
