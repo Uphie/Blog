@@ -10,7 +10,7 @@ toc: true
 
 # 数据结构
 
-![Redis hash数据结构](../_post_imgs/2020-09/redis-hash-structure.png)
+![Redis hash数据结构](http://img.itworkman.com/cnblog/nosql/20191221/6467.png)
 
 相关源码：
 > https://github.com/redis/redis/blob/5.0/src/dict.h
