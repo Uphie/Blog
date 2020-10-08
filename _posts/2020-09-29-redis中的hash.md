@@ -10,7 +10,7 @@ toc: true
 
 # 数据结构
 
-![Redis hash数据结构](http://img.itworkman.com/cnblog/nosql/20191221/6467.png)
+![Redis hash数据结构](https://static001.infoq.cn/resource/image/b3/a5/b3f9231bd0198f491852b9fbb611a2a5.png)
 
 相关源码：
 > https://github.com/redis/redis/blob/5.0/src/dict.h
@@ -108,6 +108,7 @@ OK
 # 常用命令
 
 ## 对 field 的操作
+
 | 命令                                   | 说明                                        |
 | -------------------------------------- | ------------------------------------------- |
 | hdel key {field}                       | 删除 field                                  |
