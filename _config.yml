@@ -6,7 +6,7 @@ title: UphieStudio                      # the main title
 tagline: 随笔，碎碎念  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  UphieStudio,博客
+  Uphie的个人站，IT技术博客，随笔。擅长 Python、Go。
 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://uphie.studio'

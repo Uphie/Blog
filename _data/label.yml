@@ -5,9 +5,9 @@ panel:
   toc: "概要"
 
 post:
-  relate_posts: "推荐文章"
+  relate_posts: "相关文章"
   button:
-    next: 上一篇
-    previous: 下一篇
+    next: 下一篇
+    previous: 上一篇
 
 search_hint: "搜索"   # text show on search bar
