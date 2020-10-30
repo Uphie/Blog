@@ -8,16 +8,16 @@ math: true
 toc: true
 ---
 
-在用 `iris` 和 `gin` 做压测，压缩结果不怎么理想。发现两个程序都有以下的日志输出：
+在用 `iris` 和 `gin` 做压测，压测结果不怎么理想。发现两个程序都有以下的日志输出：
 ```
 [HTTP Server] http: Accept error: accept tcp [::]:9000: accept4: too many open files; retrying in 5ms
 [HTTP Server] http: Accept error: accept tcp [::]:9000: accept4: too many open files; retrying in 10ms
 [HTTP Server] http: Accept error: accept tcp [::]:9000: accept4: too many open files; retrying in 5ms
 ```
 
-看日志是说有 server 进程打开的文件太多，压测是用 5000 的并发量测试的，那么进程应该支撑不了这么多连接，也就是文件描述符。
+看日志是说有 server 进程打开的文件太多，那么进程应该打开了过多的文件描述符，在这里即网络连接。
 
-查看系统限制：
+想到压测是用 5000 的并发量测试的，查看系统限制：
 ```
 [root@Uphie ~]# ulimit -a
 core file size          (blocks, -c) 0
@@ -56,9 +56,9 @@ Max nice priority         0                    0
 Max realtime priority     0                    0                    
 Max realtime timeout      unlimited            unlimited            us
 ```
-可以看到系统限制了 server 进程可打开的文件描述符的数量为 1024（软限制），最大不能超过 4096（硬限制），默认的且没被修改过。
+可以看到系统限制了 server 进程可打开的文件描述符的数量为 1024（软限制），最大不能超过 4096（硬限制），限制是默认的没被修改过。
 
-而在别的机器上也做了相同并发的测试，没有出现上面的错误，查看进程的文件描述符软硬限制已经被改为了102400，完全够了。
+而我在别的机器上也做了相同并发的测试，没有出现上面的错误，查看其进程的文件描述符软硬限制已经被改为了102400，完全够了。
 
 从系统层面修改限制
 ```
