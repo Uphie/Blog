@@ -1,5 +1,5 @@
 ---
-title: accept4: too many open files; retrying in 5ms
+title: too many open files; retrying in 5ms
 author: Uphie
 date: 2020-10-30 09:50:10 +0800
 categories: [技术]
