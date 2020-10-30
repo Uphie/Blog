@@ -15,7 +15,7 @@ toc: true
 [HTTP Server] http: Accept error: accept tcp [::]:9000: accept4: too many open files; retrying in 5ms
 ```
 
-看日志是说有 server 进程打开的文件太多，那么进程应该打开了过多的文件描述符，在这里即网络连接。
+看日志是说有 server 进程打开的文件太多，那么进程应该打开了最大限制量的文件描述符，无法再打开新的，在这里即网络连接。
 
 想到压测是用 5000 的并发量测试的，查看系统限制：
 ```
