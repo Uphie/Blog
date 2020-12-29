@@ -20,7 +20,7 @@ toc: true
 -> Redirected to slot[2703] located at 10.11.0.2:8000
 (integer) 0
 127.0.0.1:8000>bitop and c a b
-(error) CROSSSLOT Keys in request don\'t hash to the same slot
+(error) CROSSSLOT Keys in request don't hash to the same slot
 ```
 
 # 解决
@@ -36,13 +36,15 @@ hash slot 可以帮助集群的横向伸缩，增减节点时只需要将节点�
 
 **在集群模式中，同一个请求中涉及多个key的操作，会被限制在一个 slot 中，不能跨 slot 执行。**
 比如：
-- 多 key 命令： `mset`、`mget`、`bitop`等
-- **事务**
-- **Lua脚本**
+- 多 key 命令： `mset`、`mget`、`bitop` 等
+- 涉及到多 key 的**事务**
+- 涉及到多 key 的**Lua脚本**
 
-但是**对于 Redis Enterprise 没有这个问题，只是开源版有这个问题**，不知道以后开源版会不会修改这个bug。
+上面的情形中 `a` 和 `b` 就被映射到了不同的 slot 上面。
 
-参见源码：[https://github.com/redis/redis/blob/5.0/src/cluster.c](https://github.com/redis/redis/blob/5.0/src/cluster.c)
+但是** Redis Enterprise 没有这个问题，只是开源版有这个问题**，不知道以后开源版会不会修改这个bug。
+
+该异常参见源码：[https://github.com/redis/redis/blob/5.0/src/cluster.c](https://github.com/redis/redis/blob/5.0/src/cluster.c)
 ```C
 /* If it is not the first key, make sure it is exactly
  * the same key as the first we saw. */
@@ -61,12 +63,10 @@ if (!equalStringObjects(firstkey,thiskey)) {
 }
 ```
 
-上面的情形中 `a` 和 `b` 被映射到了不同的 slot 上面。
-
 ## hash tag
 hash tag 可以影响 hash slot 的生成，相同 hash tag 的 key 会被分配到相同的 hash slot。hash tag使用 `{...}` 形式。对于包含 hash tag 的 key，redis只会对 `{}` 内的字符串计算 hash，从而相同 hash tag 的 key 会计算得到相同的 hash slot。
 
-一个有效的 hash tag 应该是key中首个 `{` 和首个 `}` 之间有字符。
+一个有效的 hash tag 应该是key中首个 `{` 和首个 `}`（在首个 `{` 之后） 之间有字符存在。
 
 示例：
 - `{user1000}.following`、 `{user1000}.follower` 有相同 hash tag，会被分到相同的 slot
@@ -78,7 +78,8 @@ hash tag 可以影响 hash slot 的生成，相同 hash tag 的 key 会被分配
 注意，hash tag 要合理使用，避免大量的 key 被分配到相同 slot 里导致数据存储和访问倾斜。
 
 ## 解决方法
-根据前面的知识可以这样解决：
+
+根据前面的讲到的 hash tag 可以这样解决：
 ```shell
 127.0.0.1:8000>setbit {sometext}a 3 1
 (integer) 0
